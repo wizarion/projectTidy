@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TableComponent } from './table/table.component'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  
+  
+
+  constructor() {
+    document.body.style.backgroundColor = "#fcf7f0"
+  }
+  
 }

@@ -1,37 +1,29 @@
 <div class="container">
-    <h2>Customers</h2>      
-    <table class="table">
+
+    <table class="table table-hover">
         <thead>
         <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
             <th>City</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>John Doe</td>
-            <td>john@example.com</td>
-            <td>555-925-4568</td>
-            <td>Street Avenue</td>
-            <td>New York</td>
-        </tr>
-        <tr>
-            <td>John Doe</td>
-            <td>john@example.com</td>
-            <td>555-925-4568</td>
-            <td>Street Avenue</td>
-            <td>New York</td>
-        </tr>
-        <tr>
-            <td>John Doe</td>
-            <td>john@example.com</td>
-            <td>555-925-4568</td>
-            <td>Street Avenue</td>
-            <td>New York</td>
-        </tr>
+            <tr *ngFor="let customer of customers"> 
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.city }}</td>
+                <td><a href="" (click)="updateCustomer()" style="margin: 0 8px 0 8px; color: #2196F3;"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="" (click)="removeCustomer(customer.id)" style="margin: 0 8px 0 8px; color:#F44336;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -1,28 +1,44 @@
 import { Component, OnInit } from '@angular/core'
 import { Customer } from '../customer/customer.model'
-import { CustomerService } from '../customer/customer.service';
+import { CustomerService } from '../customer/customer.service'
+import { PanelService } from '../panel/panel.service'
 
 @Component({
     selector: 'app-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.css'],
-    providers: [ CustomerService ]
+    providers: [ CustomerService, PanelService ]
 })
 export class TableComponent implements OnInit{
 
+    public title: string = 'Customers'
+    public titleStrong: string = 'Management'
+    public titleButton: string = 'Add New Customer'
     public customers: Customer[]
 
-    constructor(private customerService: CustomerService) { }
+    constructor(private customerService: CustomerService) {
+        PanelService.title.emit({
+            title: this.title, 
+            strong: this.titleStrong,
+            button: this.titleButton,
+            hidden: 'hidden'
+        })
+    }
 
     ngOnInit() {
-        
-        this.customerService.getCustomers()
-            .then(( customers: Customer[] ) => {
-                this.customers = customers
-            })
-            .catch(( param: any ) => {
-                console.log(param)
-            })
+        this.getCustomers()
+    }
+
+    getCustomers(): void {
+        this.customerService
+            .getCustomersObservable()
+            .subscribe(
+                (customers: Customer[]) => {
+                    this.customers = customers
+                },
+                (error: any) => console.log(error),
+                () => console.log('getCustomers executed.')
+            )
     }
 
     updateCustomer(): void {
@@ -31,12 +47,9 @@ export class TableComponent implements OnInit{
 
     removeCustomer(id: number): void {
         this.customerService.removeCustomer(id)
-            .then(( customer: string ) => {
+            .subscribe(( customer: string ) => {
+                this.getCustomers()
                 alert('Usuário removido com sucesso')
-            })
-            .catch(( param: any ) => {
-                alert('deu ruim')
-                console.log(param)
             })
     }
 }

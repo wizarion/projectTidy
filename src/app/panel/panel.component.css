@@ -4,6 +4,9 @@
     border: 1px solid;
 }
 
+button {
+    margin: 0 8px 0 8px;
+}
 .title {
     padding-bottom: 25px;
     background-color: #343a40;

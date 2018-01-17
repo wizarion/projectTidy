@@ -1,22 +1,28 @@
 import { Http } from '@angular/http'
-import { Injectable } from '@angular/core'
+import { Injectable, Output } from '@angular/core'
 import { Customer } from './customer.model'
-import 'rxjs/add/operator/toPromise'
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
+
+import { URL_API } from '../app.api'
 
 @Injectable()
 export class CustomerService {
 
     constructor(private http: Http) {}
 
-    public getCustomers(): Promise<Customer[]> {
-        return this.http.get('http://tidy-api-test.herokuapp.com/api/v1/customer_data.json')
-        .toPromise()
-        .then((response: any) => response.json())
+    public getCustomersObservable(): Observable<Customer[]> {
+        return this.http.get(`${URL_API}.json`)
+            .map(response => response.json())
+            .catch(error => Observable.throw(error.message))
     }
 
-    public removeCustomer(id: number): Promise<string> {
-        return this.http.delete(`http://tidy-api-test.herokuapp.com/api/v1/customer_data/${id}`)
-        .toPromise()
-        .then((response: any) => response.json())
+    public removeCustomer(id: number): any {
+        return this.http.delete(`${URL_API}/${id}`)
+    }
+
+    public insertCustomer() {
+        alert('work')
     }
 }

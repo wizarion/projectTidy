@@ -1,5 +1,4 @@
 export class Customer {
-
     public id: number
     public name: string
     public email: string
@@ -8,25 +7,4 @@ export class Customer {
     public city: string
     public state: string
     public zipcode: string
-    public created_at: Date
-    public updated_at: Date
-
-    constructor(
-        name: string,
-        email: string,
-        phone: string,
-        address: string,
-        city: string,
-        state: string,
-        zipcode: string
-    ) {
-        this.name = name
-        this.email = email
-        this.phone = phone
-        this.address = address
-        this.city = city
-        this.state = state
-        this.zipcode = zipcode
-        this.created_at = new Date()
-    }
 }

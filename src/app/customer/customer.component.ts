@@ -50,6 +50,7 @@ export class CustomerComponent {
 
             this.customerService.saveOrUpdateCustomers(this.customer)
                 .subscribe((res: number) => {
+                    alert('Custumer Successfully Saved!')
                     this.router.navigateByUrl('/')
                 })
         } else {

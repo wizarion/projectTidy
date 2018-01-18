@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input } from '@angular/core'
+import { Component, ViewChild, Input, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Customer } from './customer.model'
@@ -23,8 +23,16 @@ export class CustomerComponent {
     public invalid: string = ''
     public touched: string = ''
     @Input() public customer: Customer = new Customer()
-    
+
     constructor(private customerService: CustomerService, private router: Router) {
+
+        if (CustomerService.customer) {
+            if (CustomerService.customer.id) {
+                this.title = 'Update'
+                this.customer = CustomerService.customer
+            }
+        }
+
         PanelService.emitValues.emit({
             title: this.title,
             strong: this.titleStrong,
@@ -32,11 +40,6 @@ export class CustomerComponent {
             typeButton: this.typeButton,
             routerButton: this.routerButton,
         })
-
-        if (CustomerService.customer){
-            this.customer = CustomerService.customer
-            
-        }
     }
 
     public insertCustomer(): void {

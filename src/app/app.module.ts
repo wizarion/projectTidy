@@ -27,7 +27,7 @@ import { CustomerService } from './customer/customer.service';
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [PanelService, CustomerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

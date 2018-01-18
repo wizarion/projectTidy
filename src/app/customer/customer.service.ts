@@ -1,4 +1,4 @@
-import { Http } from '@angular/http'
+import { Http, RequestOptions, Headers, Response } from '@angular/http'
 import { Injectable, Output } from '@angular/core'
 import { Customer } from './customer.model'
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ export class CustomerService {
 
     constructor(private http: Http) {}
 
-    public getCustomersObservable(): Observable<Customer[]> {
+    public getCustomers(): Observable<Customer[]> {
         return this.http.get(`${URL_API}.json`)
             .map(response => response.json())
             .catch(error => Observable.throw(error.message))
@@ -22,7 +22,16 @@ export class CustomerService {
         return this.http.delete(`${URL_API}/${id}`)
     }
 
-    public insertCustomer() {
-        alert('work')
+    public insertCustomers(customer: Customer): Observable<number> {
+        
+        let headers: Headers = new Headers()
+        headers.append('Content-type', 'application/json')
+
+        return this.http.post(
+            `${URL_API}`,
+            JSON.stringify(customer),
+            new RequestOptions({ headers: headers })
+        )
+        .map((res: Response) => res.json().id)
     }
 }

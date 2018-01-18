@@ -7,3 +7,11 @@
 .form-row {
     margin-bottom: 15px;
 }
+
+input.ng-invalid.ng-touched {
+    border: 1px solid #dc3545;
+}
+
+input.ng-valid.ng-touched {
+    border: 1px solid #28a745;
+}

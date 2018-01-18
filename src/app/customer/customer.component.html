@@ -1,46 +1,117 @@
 <div class="container">
-    <form>
+    <form novalidate #formData="ngForm" (ngSubmit)="insertCustomer()">
         <div class="form-row">
             <div class="col-sm-6">
                 <label for="validationDefault01">Name</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Your Name" required>
+                <input 
+                    type="text" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="Your Name"
+                    autocomplete="off"
+                    required
+                    name="name"
+                    ngModel
+                    #inputName="ngModel"
+                >
+                  <small ng-show="!inputName.valid && inputName.touched || formData.$submitted" class="form-text text-danger">Name is required</small>
             </div>
             <div class="col-sm-6">
                 <label for="validationDefault02">E-mail</label>
-                <input type="email" class="form-control" id="validationDefault02" placeholder="E-mail" required>
+                <input 
+                    type="email" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="E-mail"
+                    autocomplete="off"
+                    required
+                    name="email"
+                    ngModel
+                    #inputEmail="ngModel"
+                >
+                <small *ngIf="!inputEmail.valid && inputEmail.touched" class="form-text text-danger">Must be a valid e-mail</small>
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-sm-6">
                 <label for="validationDefault03">Phone</label>
-                <input type="text" class="form-control" id="validationDefault03" placeholder="Phone Number" required>
+                <input 
+                    type="text" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="Phone Number"
+                    autocomplete="off"
+                    required
+                    name="phone"
+                    ngModel
+                    #inputPhone="ngModel"
+                >
+                <small *ngIf="!inputPhone.valid && inputPhone.touched" class="form-text text-danger">Phone is required</small>
             </div>
             <div class="col-sm-6">
                 <label for="validationDefault04">Zip</label>
-                <input type="text" class="form-control" id="validationDefault04" placeholder="Zip" required>
+                <input 
+                    type="text" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="Zip Code"
+                    autocomplete="off"
+                    required
+                    name="zipcode"
+                    ngModel
+                    #inputZipcode="ngModel"
+                >
+                <small *ngIf="!inputZipcode.valid && inputZipcode.touched" class="form-text text-danger">Zip code is required</small>
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-sm-12">
                 <label for="validationDefault05">Address</label>
-                <input type="text" class="form-control" id="validationDefault05" placeholder="Address" required>
+                <input 
+                    type="text" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="Address"
+                    autocomplete="off"
+                    minlength="5"
+                    required
+                    name="address"
+                    ngModel
+                    #inputAddress="ngModel"
+                >
+                <small ng-show="!inputAddress.valid && inputAddress.touched || formData.$submitted" class="form-text text-danger">Address is required</small>
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-sm-6">
                 <label for="validationDefault06">City</label>
-                <input type="text" class="form-control" id="validationDefault06" placeholder="City" required>
+                <input 
+                    type="text" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="City"
+                    autocomplete="off"
+                    required
+                    name="city"
+                    ngModel
+                    #inputCity="ngModel"
+                >
+                <small *ngIf="!inputCity.valid && inputCity.touched" class="form-text text-danger">City is required</small>
             </div>
             <div class="col-sm-6">
                 <label for="validationDefault07">State</label>
-                <input type="text" class="form-control" id="validationDefault07" placeholder="State" required>
+                <input 
+                    type="text" 
+                    class="form-control {{invalid}} {{touched}}" 
+                    placeholder="State"
+                    autocomplete="off"
+                    required
+                    name="state"
+                    ngModel
+                    #inputState="ngModel"
+                >
+                <small *ngIf="!inputState.valid && inputState.touched" class="form-text text-danger">State is required</small>
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button class="btn btn-info" (Click)=</button>>Save Customer</button>
+            <button type="submit"class="btn btn-info">Save Customer</button>
         </div>
     </form>
 </div>

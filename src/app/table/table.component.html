@@ -14,12 +14,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let customer of customers"> 
-                <td>{{ customer.id }}</td>
-                <td>{{ customer.name }}</td>
-                <td>{{ customer.email }}</td>
-                <td>{{ customer.phone }}</td>
-                <td>{{ customer.address }}</td>
-                <td>{{ customer.city }}</td>
+                <td>{{customer.id}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.address}}</td>
+                <td>{{customer.city}}</td>
                 <td>
                     <a href="#" (click)="updateCustomer()" style="margin: 0 8px 0 8px; color: #2196F3;" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a href="#" (click)="removeCustomer(customer.id)" style="margin: 0 8px 0 8px; color:#F44336;" title="Remove"><i class="fa fa-trash" aria-hidden="true"></i></a>

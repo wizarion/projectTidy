@@ -7,21 +7,24 @@ import { PanelService } from '../panel/panel.service'
     selector: 'app-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.css'],
-    providers: [ CustomerService, PanelService ]
+    providers: [CustomerService, PanelService]
 })
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit {
 
     public title: string = 'Customers'
     public titleStrong: string = 'Management'
     public titleButton: string = 'Add New Customer'
+    public typeButton: string = 'info'
+    public routerButton: string = '/customer'
     public customers: Customer[]
 
     constructor(private customerService: CustomerService) {
         PanelService.title.emit({
-            title: this.title, 
+            title: this.title,
             strong: this.titleStrong,
-            button: this.titleButton,
-            hidden: 'hidden'
+            titleButton: this.titleButton,
+            typeButton: this.typeButton,
+            routerButton: this.routerButton
         })
     }
 
@@ -31,13 +34,12 @@ export class TableComponent implements OnInit{
 
     getCustomers(): void {
         this.customerService
-            .getCustomersObservable()
+            .getCustomers()
             .subscribe(
-                (customers: Customer[]) => {
-                    this.customers = customers
-                },
-                (error: any) => console.log(error),
-                () => console.log('getCustomers executed.')
+            (customers: Customer[]) => {
+                this.customers = customers
+            },
+            (error: any) => console.log(error)
             )
     }
 
@@ -46,10 +48,13 @@ export class TableComponent implements OnInit{
     }
 
     removeCustomer(id: number): void {
-        this.customerService.removeCustomer(id)
-            .subscribe(( customer: string ) => {
-                this.getCustomers()
-                alert('Usuário removido com sucesso')
-            })
+
+        let conf = confirm("Do you really want to remove this customer?")
+        if (conf) {
+            this.customerService.removeCustomer(id)
+                .subscribe((customer: string) => {
+                    this.getCustomers()
+                })
+        }
     }
 }

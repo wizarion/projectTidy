@@ -4,7 +4,9 @@ export class Customer {
     public email: string
     public phone: string
     public address: string
+    public zipcode: string
     public city: string
     public state: string
-    public zipcode: string
+
+    constructor() { }
 }

@@ -8,7 +8,7 @@
                 </h2>
             </div>
             <div class="col-sm-7 d-flex justify-content-end">
-                <button [routerLink]="[routerButton]" class="btn btn-{{typeButton}}">{{titleButton}}</button>
+                <button [routerLink]="[routerButton]" (click)="cleanCustumer()" class="btn btn-{{typeButton}}">{{titleButton}}</button>
             </div>
         </div>
     </div>

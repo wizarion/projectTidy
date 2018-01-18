@@ -11,10 +11,10 @@
                     autocomplete="off"
                     required
                     name="name"
-                    ngModel
+                    [ngModel]="customer.name"
                     #inputName="ngModel"
                 >
-                <small *ngIf="!inputName.valid && inputName.touched || formData.submitted" class="form-text text-danger">Name is required</small>
+                <small *ngIf="!inputName.valid && inputName.touched || !inputName.valid && formData.submitted" class="form-text text-danger">Name is required</small>
             </div>
             <div class="col-sm-6">
                 <label for="validationDefault02">E-mail</label>
@@ -25,10 +25,10 @@
                     autocomplete="off"
                     required
                     name="email"
-                    ngModel
+                    [ngModel]="customer.email"
                     #inputEmail="ngModel"
                 >
-                <small *ngIf="!inputEmail.valid && inputEmail.touched || formData.submitted" class="form-text text-danger">Must be a valid e-mail</small>
+                <small *ngIf="!inputEmail.valid && inputEmail.touched || !inputName.valid && formData.submitted" class="form-text text-danger">Must be a valid e-mail</small>
             </div>
         </div>
 
@@ -42,10 +42,10 @@
                     autocomplete="off"
                     required
                     name="phone"
-                    ngModel
+                    [ngModel]="customer.phone"
                     #inputPhone="ngModel"
                 >
-                <small *ngIf="!inputPhone.valid && inputPhone.touched || formData.submitted" class="form-text text-danger">Phone is required</small>
+                <small *ngIf="!inputPhone.valid && inputPhone.touched || !inputName.valid && formData.submitted" class="form-text text-danger">Phone is required</small>
             </div>
             <div class="col-sm-6">
                 <label for="validationDefault04">Zip</label>
@@ -56,10 +56,10 @@
                     autocomplete="off"
                     required
                     name="zipcode"
-                    ngModel
+                    [ngModel]="customer.zipcode"
                     #inputZipcode="ngModel"
                 >
-                <small *ngIf="!inputZipcode.valid && inputZipcode.touched || formData.submitted" class="form-text text-danger">Zip code is required</small>
+                <small *ngIf="!inputZipcode.valid && inputZipcode.touched || !inputName.valid && formData.submitted" class="form-text text-danger">Zip code is required</small>
             </div>
         </div>
 
@@ -74,10 +74,10 @@
                     minlength="5"
                     required
                     name="address"
-                    ngModel
+                    [ngModel]="customer.address"
                     #inputAddress="ngModel"
                 >
-                <small *ngIf="!inputAddress.valid && inputAddress.touched || formData.submitted" class="form-text text-danger">Address is required</small>
+                <small *ngIf="!inputAddress.valid && inputAddress.touched || !inputName.valid && formData.submitted" class="form-text text-danger">Address is required</small>
             </div>
         </div>
 
@@ -91,10 +91,10 @@
                     autocomplete="off"
                     required
                     name="city"
-                    ngModel
+                    [ngModel]="customer.city"
                     #inputCity="ngModel"
                 >
-                <small *ngIf="!inputCity.valid && inputCity.touched || formData.submitted" class="form-text text-danger">City is required</small>
+                <small *ngIf="!inputCity.valid && inputCity.touched || !inputName.valid && formData.submitted" class="form-text text-danger">City is required</small>
             </div>
             <div class="col-sm-6">
                 <label for="validationDefault07">State</label>
@@ -105,10 +105,19 @@
                     autocomplete="off"
                     required
                     name="state"
-                    ngModel
+                    [ngModel]="customer.state"
                     #inputState="ngModel"
                 >
-                <small *ngIf="!inputState.valid && inputState.touched || formData.submitted" class="form-text text-danger">State is required</small>
+                <small *ngIf="!inputState.valid && inputState.touched || !inputName.valid && formData.submitted" class="form-text text-danger">State is required</small>
+            </div>
+            <div class="col-sm-6">
+                <input 
+                    type="text"
+                    hidden
+                    name="id"
+                    [ngModel]="customer.id"
+                    #inputState="ngModel"
+                >
             </div>
         </div>
         <div class="d-flex justify-content-end">

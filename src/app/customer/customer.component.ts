@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component, ViewChild, Input } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Customer } from './customer.model'
@@ -20,18 +20,23 @@ export class CustomerComponent {
     public titleButton: string = 'Back'
     public typeButton: string = 'secondary'
     public routerButton: string = '/'
-    public customer: Customer = new Customer()
     public invalid: string = ''
     public touched: string = ''
-
+    @Input() public customer: Customer = new Customer()
+    
     constructor(private customerService: CustomerService, private router: Router) {
-        PanelService.title.emit({
+        PanelService.emitValues.emit({
             title: this.title,
             strong: this.titleStrong,
             titleButton: this.titleButton,
+            typeButton: this.typeButton,
             routerButton: this.routerButton,
-
         })
+
+        if (CustomerService.customer){
+            this.customer = CustomerService.customer
+            
+        }
     }
 
     public insertCustomer(): void {
@@ -40,7 +45,7 @@ export class CustomerComponent {
 
             this.customer = this.formData.value
 
-            this.customerService.insertCustomers(this.customer)
+            this.customerService.saveOrUpdateCustomers(this.customer)
                 .subscribe((res: number) => {
                     this.router.navigateByUrl('/')
                 })

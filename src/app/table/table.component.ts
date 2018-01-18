@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Customer } from '../customer/customer.model'
+import { Router } from '@angular/router'
 import { CustomerService } from '../customer/customer.service'
 import { PanelService } from '../panel/panel.service'
 
@@ -17,9 +18,10 @@ export class TableComponent implements OnInit {
     public typeButton: string = 'info'
     public routerButton: string = '/customer'
     public customers: Customer[]
+    public customer: Customer
 
-    constructor(private customerService: CustomerService) {
-        PanelService.title.emit({
+    constructor(private customerService: CustomerService, private router: Router) {
+        PanelService.emitValues.emit({
             title: this.title,
             strong: this.titleStrong,
             titleButton: this.titleButton,
@@ -43,8 +45,12 @@ export class TableComponent implements OnInit {
             )
     }
 
-    updateCustomer(): void {
-        alert('work')
+    updateCustomer(id: number): void {
+
+        let array = this.customers.filter((elem) => elem.id === id)
+        CustomerService.customer = array[0]
+
+        this.router.navigateByUrl('/customer')
     }
 
     removeCustomer(id: number): void {

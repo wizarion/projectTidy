@@ -21,7 +21,7 @@ export class CustomerComponent {
     public typeButton: string = 'secondary'
     public routerButton: string = '/'
     public customer: Customer = new Customer()
-    public invalid: string= ''
+    public invalid: string = ''
     public touched: string = ''
 
     constructor(private customerService: CustomerService, private router: Router) {
@@ -30,21 +30,16 @@ export class CustomerComponent {
             strong: this.titleStrong,
             titleButton: this.titleButton,
             routerButton: this.routerButton,
-            
+
         })
     }
 
     public insertCustomer(): void {
-        
-        if(this.formData.valid) {
-            this.customer.name = this.formData.value.name
-            this.customer.email = this.formData.value.email
-            this.customer.phone = this.formData.value.phone
-            this.customer.zipcode = this.formData.value.zipcode
-            this.customer.address = this.formData.value.address
-            this.customer.city = this.formData.value.city
-            this.customer.state = this.formData.value.state
-            
+
+        if (this.formData.valid) {
+
+            this.customer = this.formData.value
+
             this.customerService.insertCustomers(this.customer)
                 .subscribe((res: number) => {
                     this.router.navigateByUrl('/')
